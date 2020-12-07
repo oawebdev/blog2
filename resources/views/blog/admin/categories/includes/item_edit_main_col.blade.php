@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group">
                             <label for="slug">Псевдонім</label>
-                            <input type="text" name="slug" value="{{ $item->slug }}" id="slug" class="form-control" required>
+                            <input type="text" name="slug" value="{{ $item->slug }}" id="slug" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="parent_id">Батківська категорія</label>
@@ -25,7 +25,7 @@
                                 @foreach ($categoryList as $categoryOption)
                                     <option value="{{ $categoryOption->id }}"
                                             @if($categoryOption->id == $item->parent_id) selected @endif>
-                                        {{ $categoryOption->id }}. {{ $categoryOption->title }}
+                                        {{ $categoryOption->id_title }}
                                     </option>
                                 @endforeach
                             </select>

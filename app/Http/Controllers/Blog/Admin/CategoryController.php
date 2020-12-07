@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Http\Requests\BlogCategoryCreateRequest;
+use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategory;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Repositories\BlogCategoryRepository;
+
 
 class CategoryController extends BaseController
 {
+    private $blogCategoryRepository;
+
+    public function __construct()
+    {
+        //parent::__construct();
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,8 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $paginator = BlogCategory::paginate(5);
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
+       //     BlogCategory::paginate(5);
 
         return view('blog.admin.categories.index', compact('paginator'));
     }
@@ -27,7 +38,10 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        //
+        $item = new BlogCategory();
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
+
+        return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -36,9 +50,24 @@ class CategoryController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogCategoryCreateRequest $request)
     {
-        //
+        $data = $request->input(); //отримаємо масив даних, які надійшли з форми
+        if (empty($data['slug'])) { //якщо псевдонім порожній
+            $data['slug'] = Str::slug($data['title']); //генеруємо псевдонім
+        }
+
+        $item = (new BlogCategory())->create($data); //створюємо об'єкт і додаємо в БД
+
+        if ($item) {
+            return redirect()
+                ->route('blog.admin.categories.edit', [$item->id])
+                ->with(['success' => 'Успішно збережено']);
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Помилка збереження'])
+                ->withInput();
+        }
     }
 
     /**
@@ -60,8 +89,8 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        $item = BlogCategory::findOrFail($id);
-        $categoryList = BlogCategory::all();
+        $item = $this->blogCategoryRepository->getEdit($id);
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
@@ -73,9 +102,9 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        $item = BlogCategory::find($id);
+        $item = $this->blogCategoryRepository->getEdit($id);
         if (empty($item)) { //якщо ід не знайдено
             return back() //redirect back
             ->withErrors(['msg' => "Запис id=[{$id}] не знайдено"]) //видати помилку
@@ -86,13 +115,6 @@ class CategoryController extends BaseController
         if (empty($data['slug'])) { //якщо псевдонім порожній
             $data['slug'] = Str::slug($data['title']); //генеруємо псевдонім
         }
-
-        $data = $request->validate([
-            'title' => 'required|min:5|max:200',
-            'slug' => 'max:200',
-            'description' => 'string|max:500|min:3',
-            'parent_id' => 'required|integer|exists:blog_categories,id',
-        ]);
 
         $result = $item->update($data);  //оновлюємо дані об'єкта і зберігаємо в БД
 

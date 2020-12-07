@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\Blog\PostController;
 use App\Http\Controllers\RestTestController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,4 +41,10 @@ Route::group($groupData, function () {
     Route::resource('categories', CategoryController::class)
         ->only($methods)
         ->names('blog.admin.categories');
+
+    Route::resource('posts', PostController::class)
+        ->except(['show'])                               //не робити маршрут для метода show
+        ->names('blog.admin.posts');
 });
+//BlogPost
+
