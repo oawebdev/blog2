@@ -26,15 +26,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87edb096-eb0c-4996-8c84-c89b29d51f4d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Repositories/BlogCategoryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/BlogPostRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/CoreRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/blog/admin/posts/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/BlogPostUpdateRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/blog/admin/posts/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/blog/admin/posts/includes/post_edit_add_col.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/blog/admin/posts/includes/post_edit_main_col.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/blog/admin/posts/includes/result_messages.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Blog/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Blog/Admin/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog/admin/categories/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/admin/categories/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/blog/admin/categories/includes/item_edit_main_col.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/admin/categories/includes/item_edit_main_col.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Blog/Admin/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Blog/Admin/BaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Blog/Admin/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Blog/Admin/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/BlogPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/BlogPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/BlogPostRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/BlogPostRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/admin/posts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/admin/posts/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +229,8 @@
       <workItem from="1607065149734" duration="5358000" />
       <workItem from="1607070642146" duration="295000" />
       <workItem from="1607070988572" duration="685000" />
-      <workItem from="1607258273288" duration="10694000" />
+      <workItem from="1607258273288" duration="11584000" />
+      <workItem from="1607429751986" duration="4905000" />
     </task>
     <task id="LOCAL-00001" summary="install laravel">
       <created>1606897781279</created>
@@ -248,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607325886935</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="l4-7">
+      <created>1607329736881</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1607329736881</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,7 +294,8 @@
     <MESSAGE value="install laravel" />
     <MESSAGE value="add BlogPosts, BlogCategories" />
     <MESSAGE value="l2-3" />
-    <option name="LAST_COMMIT_MESSAGE" value="l2-3" />
+    <MESSAGE value="l4-7" />
+    <option name="LAST_COMMIT_MESSAGE" value="l4-7" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
